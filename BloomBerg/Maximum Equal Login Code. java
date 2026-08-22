@@ -1,0 +1,83 @@
+## Maximum Equal Login Code
+
+You are given two integer arrays, `initialLogin` and `standardLogin`.
+
+A security system allows you to perform the following operation on either array any number of times:
+
+> Select any contiguous subarray and replace the entire subarray with the sum of its elements.
+
+For example, given:
+
+```text
+[1, 5, 6, 8, 2]
+```
+
+if we select the subarray `[1, 5, 6]`, its sum is `12`, so the array becomes:
+
+```text
+[12, 8, 2]
+```
+
+You can perform this operation independently on both `initialLogin` and `standardLogin`.
+
+### Objective
+
+Transform both arrays into **identical arrays** such that the **length of the resulting arrays is maximized**.
+
+Return the maximum possible length of the resulting equal arrays.
+
+If it is impossible to transform the two arrays into equal arrays, return `-1`.
+
+### Example
+
+**Input:**
+
+```text
+initialLogin = [2, 4, 3, 7, 10]
+standardLogin = [6, 5, 5, 10]
+```
+
+The arrays can be transformed as:
+
+```text
+initialLogin:
+[2, 4] [3, 7] [10]
+   ↓      ↓      ↓
+   6     10     10
+
+standardLogin:
+[6] [5, 5] [10]
+ ↓     ↓      ↓
+ 6    10     10
+```
+
+Therefore, both arrays can become:
+
+```text
+[6, 10, 10]
+```
+
+The maximum possible length is **3**.
+
+**Output:**
+
+```text
+3
+```
+
+### Constraints
+
+* `1 <= initialLogin.length, standardLogin.length`
+* `1 <= standardLogin.length`
+* Each array element is a positive integer (`>= 1`).
+
+### Function Signature
+
+```java
+public static int loginCode(
+    List<Integer> initialLogin,
+    List<Integer> standardLogin
+)
+```
+
+**Key observation:** Each final element represents the sum of a contiguous segment of the original array. Therefore, the problem is equivalent to partitioning both arrays into the maximum number of corresponding contiguous segments having equal sums.
